@@ -16,9 +16,11 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.ShooterConstants.ShooterPosition;
 import frc.robot.RobotContainer;
+import frc.robot.commands.drive_commands.DriveWithLimelightTarget;
 import frc.robot.commands.intake_commands.Eject;
 import frc.robot.commands.intake_commands.IntakeAutoPickup;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.drivetrain.SwerveDrivetrain;
 
@@ -27,12 +29,14 @@ public class AutonContainer {
     private final SwerveDrivetrain drivetrain;
     private final Shooter shooter;
     private final Intake intake;
+    private final Limelight shooterLimelight;
 
     /** Constructs an AutonContainer object */ 
     public AutonContainer(RobotContainer robot) {
         drivetrain = robot.drivetrain;
         shooter = robot.shooter;
         intake = robot.intake;
+        shooterLimelight = robot.shooterLimelight;
 
         registerNamedCommands();
 
@@ -53,24 +57,27 @@ public class AutonContainer {
     }
 
     private void registerNamedCommands() {
+        NamedCommands.registerCommand("RevShooter", new SetShooterState(shooter, ShooterPosition.POINT_BLANK, 5000));
+        NamedCommands.registerCommand("Shoot Preload", shootPreload());
+        NamedCommands.registerCommand("Intake", new IntakeAutoPickup(intake).withTimeout(3));
+        NamedCommands.registerCommand("Take Longshot", new DriveWithLimelightTarget(drivetrain, shooterLimelight, () -> 0, () -> 0, () -> 0)
+            .alongWith(new AimShooterAtSpeaker(shooterLimelight, shooter)).withTimeout(.9)
+            .andThen(new Eject(intake).withTimeout(.1)));
         NamedCommands.registerCommand("Shoot", new Eject(intake).withTimeout(.15));
-        NamedCommands.registerCommand("AutoIntake", new IntakeAutoPickup(intake).withTimeout(3));
     }
 
     public SendableChooser<Command> buildAutonChooser() {
         SendableChooser<Command> chooser = new SendableChooser<Command>();
-        chooser.setDefaultOption("Shoot Preload", doNothing());
-        chooser.addOption("Amp Two Piece", getPPAuto("Amp Two Piece"));
-        chooser.addOption("Amp Four Piece", getPPAuto("Amp Four Piece"));
-        chooser.addOption("Center Two Piece", getPPAuto("Center Two Piece"));
-        chooser.addOption("Center Three Piece", getPPAuto("Center Three Piece"));
+        chooser.setDefaultOption("Do Nothing", doNothing());
+        chooser.addOption("Shoot Preload ONLY", shootPreload());
+        chooser.addOption("Amp Drive Late and Shoot", getPPAuto("Amp Drive Late and Shoot Preload"));
+        chooser.addOption("Amp Four Piece", getPPAuto("Amp Four Piece Long Shot"));
         chooser.addOption("Center Three Piece (Under Stage)", getPPAuto("Center Three Piece (Under Stage)"));
         chooser.addOption("Center Four Piece (Near Pieces Only)", getPPAuto("Center Four Piece (Near Pieces Only)"));
-        chooser.addOption("Center Four Piece and Claim", getPPAuto("Center Four Piece and Claim"));
         chooser.addOption("Center Five Piece!!", getPPAuto("Center Five Piece!!"));
-        chooser.addOption("Stage Two Piece", getPPAuto("Stage Two Piece"));
-        chooser.addOption("Stage Three Piece (Far Pieces Only)", getPPAuto("Stage Three Piece (Far Pieces Only)"));
-        chooser.addOption("Stage Four Piece", getPPAuto("Stage Four Piece"));
+        chooser.addOption("Center 5.5 Piece", getPPAuto("Center Five and a Half Piece"));
+        chooser.addOption("Stage Drive Late and Shoot", getPPAuto("Stage Drive Late and Shoot Preload"));
+        chooser.addOption("Stage 3.5 Piece", getPPAuto("Stage Three Piece and Claim Center"));
         return chooser;
     }
 
@@ -82,7 +89,7 @@ public class AutonContainer {
     /** Shoots the piece that comes preloaded in our robot */
     public Command shootPreload() {
         return new SequentialCommandGroup(
-            new SetShooterState(shooter, ShooterPosition.POINT_BLANK, 4000).withTimeout(.75),
+            new SetShooterState(shooter, ShooterPosition.POINT_BLANK, 5000).withTimeout(.5),
             new Eject(intake).withTimeout(.15));
     }
 

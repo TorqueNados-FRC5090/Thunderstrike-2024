@@ -2,78 +2,72 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.35,
-      "y": 5.55
+      "x": 0.7,
+      "y": 6.7
     },
-    "rotation": 0
+    "rotation": 60.0
   },
   "command": {
     "type": "sequential",
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "Center to Center Near"
+            "name": "RevShooter"
           }
         },
         {
-          "type": "wait",
+          "type": "path",
           "data": {
-            "waitTime": 0.2
+            "pathName": "Amp Start to Shoot Preload"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Take Longshot"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Center to Right Near with Rotation"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
+            "pathName": "Amp Left Near Shoot Far"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Take Longshot"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Center to Left Near with Rotation"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
+            "pathName": "Amp Far Left Shoot Long"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Take Longshot"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Center to Claim Left Fars"
+            "pathName": "Amp Far Right Shoot Long"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Take Longshot"
           }
         }
       ]
     }
   },
-  "folder": "Center Autos",
+  "folder": "Amp Autos",
   "choreoAuto": false
 }

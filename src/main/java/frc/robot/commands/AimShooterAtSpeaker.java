@@ -31,14 +31,11 @@ public class AimShooterAtSpeaker extends Command {
     }
 
     @Override
-    public void end(boolean interrupted) {
-        shooter.goToPosition(ShooterPosition.POINT_BLANK);
-        shooter.setSpeed(0);
-    }
+    public void end(boolean interrupted) {}
     
     @Override
     public boolean isFinished(){
         // This command should turn off the LED at the end of the game
-        return false;
+        return shooter.readyToShoot();
     }
 }

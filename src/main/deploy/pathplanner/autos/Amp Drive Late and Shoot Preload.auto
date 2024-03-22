@@ -2,36 +2,42 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.35,
-      "y": 5.55
+      "x": 0.7,
+      "y": 6.7
     },
-    "rotation": 0
+    "rotation": 60.0
   },
   "command": {
     "type": "sequential",
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "Center Left Near Shoot Far"
+            "name": "RevShooter"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 9.0
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Center Near Shoot Far"
+            "pathName": "Amp Left Near Shoot Far"
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "Center Right Near Shoot Far"
+            "name": "Take Longshot"
           }
         }
       ]
     }
   },
-  "folder": "Center Autos",
+  "folder": "Amp Autos",
   "choreoAuto": false
 }

@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -14,11 +13,6 @@ public class Limelight extends SubsystemBase {
      */
     public Limelight(String tableName) {
         table = NetworkTableInstance.getDefault().getTable(tableName);
-    }
-
-    /** @return The distance from ThunderStrike's shooter limelight to the apriltag on a speaker */
-    public double getShooterLLDistanceToTarget() {
-        return Units.inchesToMeters((56.375 - 8) / Math.tan(90 - 50 + getTargetY()));
     }
 
     /** @return Whether the limelight sees at least one valid target */

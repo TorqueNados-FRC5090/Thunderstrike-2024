@@ -14,25 +14,19 @@
         {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Shoot Preload"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Center Left Near Shoot Far"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.5
+            "pathName": "Center Start to Right Near Shoot Far"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Take Longshot"
           }
         },
         {
@@ -42,51 +36,39 @@
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.5
-          }
-        },
-        {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Take Longshot"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Center Right Near Shoot Far"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.5
+            "pathName": "Center Left Near Shoot Far"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Take Longshot"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Center Left Far Shoot Long"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.5
+            "pathName": "Center Far Right Shoot Far"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Take Longshot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Center to Center Far After Longshots"
           }
         }
       ]

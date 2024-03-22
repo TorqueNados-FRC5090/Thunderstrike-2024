@@ -3,37 +3,43 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.36,
-        "y": 6.78
+        "x": 2.54,
+        "y": 4.43
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.3062377748687117,
-        "y": 6.677362186633205
+        "x": 1.9064552414819116,
+        "y": 4.769222395587648
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.32,
+        "x": 2.35,
         "y": 5.55
       },
       "prevControl": {
-        "x": 2.084048840462353,
-        "y": 5.5430292057165325
+        "x": 1.631722849159984,
+        "y": 5.55
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.55,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "Intake Piece",
-      "waypointRelativePos": 0,
+      "name": "Intake",
+      "waypointRelativePos": 0.2,
       "command": {
         "type": "sequential",
         "data": {
@@ -63,7 +69,7 @@
   "reversed": false,
   "folder": "Center Paths",
   "previewStartingState": {
-    "rotation": 28.812644210378878,
+    "rotation": -38.0,
     "velocity": 0
   },
   "useDefaultConstraints": true

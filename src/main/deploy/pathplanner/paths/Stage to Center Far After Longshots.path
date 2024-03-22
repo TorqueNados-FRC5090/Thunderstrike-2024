@@ -3,66 +3,55 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.35,
-        "y": 5.55
+        "x": 2.4,
+        "y": 4.4
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.721675314779201,
-        "y": 7.147880910047535
+        "x": 2.8999600856344565,
+        "y": 6.131935121013099
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.867484306397183,
-        "y": 7.4677963641641565
+        "x": 4.913821256213941,
+        "y": 4.514133313980914
       },
       "prevControl": {
-        "x": 7.737959090077703,
-        "y": 7.50272451238514
+        "x": 4.139707614597841,
+        "y": 5.064020935266835
       },
       "nextControl": {
-        "x": 8.464929787002431,
-        "y": 7.306687470517797
+        "x": 5.887187488660691,
+        "y": 3.822707645415291
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.57,
-        "y": 5.790485866686019
+        "x": 7.518415036830074,
+        "y": 4.091222468159223
       },
       "prevControl": {
-        "x": 5.457563772270401,
-        "y": 5.803004463151783
+        "x": 6.468113549871196,
+        "y": 4.091222468159223
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 2,
-      "rotationDegrees": 0,
-      "rotateFast": false
-    },
-    {
-      "waypointRelativePos": 1,
-      "rotationDegrees": 0,
-      "rotateFast": false
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "Intake Piece 1",
-      "waypointRelativePos": 0.4,
+      "name": "Intake",
+      "waypointRelativePos": 1.3,
       "command": {
-        "type": "sequential",
+        "type": "parallel",
         "data": {
           "commands": [
             {
@@ -72,16 +61,6 @@
               }
             }
           ]
-        }
-      }
-    },
-    {
-      "name": "Shoot Piece 1",
-      "waypointRelativePos": 1.55,
-      "command": {
-        "type": "sequential",
-        "data": {
-          "commands": []
         }
       }
     }
@@ -94,13 +73,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0,
+    "rotation": 0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "Center Paths",
+  "folder": "Stage Paths",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": -30.0,
     "velocity": 0
   },
   "useDefaultConstraints": true

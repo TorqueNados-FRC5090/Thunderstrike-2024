@@ -56,7 +56,7 @@ public class RobotContainer {
     /** Use this to pass the autonomous command to the main {@link Robot} class.
      *  @return the command to run in autonomous */
     public Command getAutonomousCommand() {
-        return auton.shootPreload().andThen(autonChooser.getSelected());
+        return autonChooser.getSelected();
     }
 
     public boolean onRedAlliance() { 
@@ -102,11 +102,12 @@ public class RobotContainer {
 
     /** Configures a set of control bindings for the robot's operator */
     private void setOperatorControls() {
-        // Hold LT -> Prep the shooter for a point blank shot
-        operatorController.leftTrigger().whileTrue(new AimShooterAtSpeaker(shooterLimelight, shooter)
-            // Aim robot at target
+        // Hold LT -> Prep the shooter for a shot using limelight
+        operatorController.leftTrigger()
+        .whileTrue(new AimShooterAtSpeaker(shooterLimelight, shooter).repeatedly()
             .alongWith(new DriveWithLimelightTarget(drivetrain, shooterLimelight,
-                () -> driverController.getLeftX(), () -> driverController.getLeftY(), () -> driverController.getRightX()).repeatedly()));
+                () -> driverController.getLeftX(), () -> driverController.getLeftY(), () -> driverController.getRightX()).repeatedly()))
+        .onFalse(new SetShooterState(shooter, ShooterPosition.POINT_BLANK, 0));
 
         // Hold LB -> Prep shooter for amp shot
         operatorController.leftBumper()

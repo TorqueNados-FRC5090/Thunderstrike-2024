@@ -3,41 +3,41 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.21,
-        "y": 6.1
+        "x": 2.45,
+        "y": 6.7
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.1596114588239415,
-        "y": 6.946327738813918
+        "x": 4.235821328785515,
+        "y": 5.0243114771943835
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.591995582851448,
-        "y": 5.823688912339684
+        "x": 5.027940055880112,
+        "y": 4.238905620668384
       },
       "prevControl": {
-        "x": 7.545218965081804,
-        "y": 5.461170124619452
+        "x": 4.343227257883087,
+        "y": 4.447004608294931
       },
       "nextControl": {
-        "x": 7.651405595004645,
-        "y": 6.284116506533943
+        "x": 5.953913943418272,
+        "y": 3.957482184259728
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 4.21,
-        "y": 6.1
+        "x": 7.72651402445662,
+        "y": 4.097935338727821
       },
       "prevControl": {
-        "x": 4.2117365459485825,
-        "y": 6.579996858748229
+        "x": 6.847127979970246,
+        "y": 4.084509597590624
       },
       "nextControl": null,
       "isLocked": false,
@@ -48,8 +48,8 @@
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "Intake Piece",
-      "waypointRelativePos": 0.1,
+      "name": "Intake",
+      "waypointRelativePos": 1.2,
       "command": {
         "type": "parallel",
         "data": {
@@ -79,7 +79,7 @@
   "reversed": false,
   "folder": "Center Paths",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": 35.0,
     "velocity": 0
   },
   "useDefaultConstraints": true

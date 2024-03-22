@@ -3,41 +3,41 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.38,
+        "x": 2.35,
         "y": 6.85
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.9260279603180286,
-        "y": 7.133434209888363
+        "x": 2.5817057948401616,
+        "y": 6.90460466635219
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.650466355063765,
-        "y": 7.379011453179602
+        "x": 7.903770093254472,
+        "y": 7.359047860952865
       },
       "prevControl": {
-        "x": 7.300349629677779,
-        "y": 7.676610669757691
+        "x": 7.913889803316173,
+        "y": 7.818443775792306
       },
       "nextControl": {
-        "x": 7.884349443912563,
-        "y": 7.180210827658122
+        "x": 7.894335788671578,
+        "y": 6.930766718676294
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.112834841054298,
-        "y": 6.548726487766366
+        "x": 2.35,
+        "y": 6.85
       },
       "prevControl": {
-        "x": 5.335023775460655,
-        "y": 6.525338178881486
+        "x": 2.5698918683551657,
+        "y": 6.8939783736710325
       },
       "nextControl": null,
       "isLocked": false,
@@ -46,13 +46,31 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1.2,
+      "waypointRelativePos": 0.8,
       "rotationDegrees": 0,
       "rotateFast": false
     }
   ],
   "constraintZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Intake",
+      "waypointRelativePos": 0.5,
+      "command": {
+        "type": "sequential",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "AutoIntake"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 5.0,
     "maxAcceleration": 3.5,
@@ -61,13 +79,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 13.626994859891552,
+    "rotation": 30.0,
     "rotateFast": false
   },
   "reversed": false,
   "folder": "Amp Paths",
   "previewStartingState": {
-    "rotation": 27.03863554337462,
+    "rotation": 16.0,
     "velocity": 0
   },
   "useDefaultConstraints": true
