@@ -264,7 +264,7 @@ public final class Constants {
         }
     }
 
-  public static final class DriveConstants {
+    public static final class DriveConstants {
             /** Higher values make the robot drive more aggressively */
             public static final double TRANSLATION_SLEW = 4;
             /** Higher values make the robot spin more aggressively */

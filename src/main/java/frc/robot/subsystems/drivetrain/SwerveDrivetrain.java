@@ -6,7 +6,6 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.kinematics.*;
-import edu.wpi.first.math.filter.SlewRateLimiter;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -21,7 +20,6 @@ import static frc.robot.Constants.SwerveIDs.*;
 import static frc.robot.Constants.SwerveInversions.*;
 import static frc.robot.Constants.SwerveModuleOffsets.*;
 import static frc.robot.Constants.SwerveConstants.*;
-import static frc.robot.Constants.DriveConstants.*;
 
 /** This class represents the drivetrain on a 4 wheel swerve robot */
 public class SwerveDrivetrain extends SubsystemBase {
@@ -80,11 +78,6 @@ public class SwerveDrivetrain extends SubsystemBase {
                 rearRightModule));
 
 
-    // Declare and initialize the limiters used to slew instructions
-    private final SlewRateLimiter slewX = new SlewRateLimiter(TRANSLATION_SLEW);
-    private final SlewRateLimiter slewY = new SlewRateLimiter(TRANSLATION_SLEW);
-    private final SlewRateLimiter slewRot = new SlewRateLimiter(ROTATION_SLEW);
-
     /** The gyro is used to help keep track of where the robot is facing */
     private final AHRS gyro = new AHRS(SPI.Port.kMXP, (byte) 200);
 
@@ -106,51 +99,9 @@ public class SwerveDrivetrain extends SubsystemBase {
         gyro.reset();
     }
 
-    /** Preprocess a drive instruction for driver controlled side-to-side movement
-     *  @param input The X input coming from a driver's joystick
-     *  @return The processed output ready to be sent to the drivetrain */
-    public double preprocessX(double input) {
-        double deadbanded = MathUtil.applyDeadband(input, .05);
-        double squared = -Math.signum(deadbanded) * Math.pow(deadbanded, 2);
-        double output = slewX.calculate(squared);
-
-        return output;
-    }
-    /** Preprocess a drive instruction for driver controlled forward/back movement
-     *  @param input The Y input coming from a driver's joystick
-     *  @return The processed output ready to be sent to the drivetrain */
-    public double preprocessY(double input) {
-        double deadbanded = MathUtil.applyDeadband(input, .05);
-        double squared = -Math.signum(deadbanded) * Math.pow(deadbanded, 2);
-        double output = slewY.calculate(squared);
-
-        return output;
-    }
-    /** Preprocess a drive instruction for driver controlled rotation
-     *  @param input The rotation input coming from a driver's joystick
-     *  @return The processed output ready to be sent to the drivetrain */
-    public double preprocessRot(double input) {
-        double deadbanded = MathUtil.applyDeadband(input, .1);
-        double squared = -Math.signum(deadbanded) * Math.pow(deadbanded, 2);
-        double output = slewRot.calculate(squared);
-
-        return output;
-    }
-
-    /** Drives the robot. This is best used for driving with joysticks.
-     *  For programmatic drivetrain control, consider using sendDrive instead. 
-     * 
-     * @param inputX The left/right translation instruction
-     * @param inputY The forward/back translation instruction
-     * @param inputRot The rotational instruction
-    */
-    public void drive(double inputX, double inputY, double inputRot) {
-        double outX = preprocessX(inputX);
-        double outY = preprocessY(inputY);
-        double outRot = preprocessRot(inputRot);
-
-        // Send the processed output to the drivetrain
-        sendDrive(outX, outY, outRot, true);
+    public double deadbandAndSquare(double input, double deadband) {
+        double deadbanded = MathUtil.applyDeadband(Math.abs(input), deadband);
+        return deadbanded * deadbanded * Math.signum(input);
     }
 
     /** Sends driving instructions to the motors that drive the robot.
@@ -161,7 +112,18 @@ public class SwerveDrivetrain extends SubsystemBase {
      * @param isOpenLoop True to control the driving motor via %power.
      *                   False to control the driving motor via velocity-based PID.
     */
-    public void sendDrive( double translationX, double translationY, double rotation, boolean isOpenLoop ) {
+    public void drive(double translationX, double translationY, double rotation) {
+        drive(translationX, translationY, rotation, true);
+    }
+    /** Sends driving instructions to the motors that drive the robot.
+     *  
+     * @param translationX The left/right translation instruction
+     * @param translationY The forward/back translation instruction
+     * @param rotation The rotational instruction
+     * @param isOpenLoop True to control the driving motor via %power.
+     *                   False to control the driving motor via velocity-based PID.
+    */
+    public void drive(double translationX, double translationY, double rotation, boolean isOpenLoop) {
         // Convert inputs from % to m/sec
         translationY *= MAX_TRANSLATION_SPEED;
         translationX *= MAX_TRANSLATION_SPEED;

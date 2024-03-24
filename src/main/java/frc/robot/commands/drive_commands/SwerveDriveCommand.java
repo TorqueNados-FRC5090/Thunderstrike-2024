@@ -1,11 +1,11 @@
 package frc.robot.commands.drive_commands;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.Command;
+import static frc.robot.Constants.DriveConstants.*;
 import frc.robot.subsystems.drivetrain.SwerveDrivetrain;
 
 import java.util.function.DoubleSupplier;
-
-
 
 /** Drives the robot */
 public class SwerveDriveCommand extends Command {
@@ -14,6 +14,9 @@ public class SwerveDriveCommand extends Command {
     private final DoubleSupplier inputY;
     private final DoubleSupplier inputX;
     private final DoubleSupplier inputRot;
+    private final SlewRateLimiter slewX = new SlewRateLimiter(TRANSLATION_SLEW);
+    private final SlewRateLimiter slewY = new SlewRateLimiter(TRANSLATION_SLEW);
+    private final SlewRateLimiter slewRot = new SlewRateLimiter(ROTATION_SLEW);
 
     /** 
      * Constructs a DriveCommand
@@ -42,7 +45,11 @@ public class SwerveDriveCommand extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        drivetrain.drive(inputX.getAsDouble(), inputY.getAsDouble(), inputRot.getAsDouble());
+        double x = slewX.calculate(drivetrain.deadbandAndSquare(inputX.getAsDouble(), TRANSLATION_DEADBAND));
+        double y = slewY.calculate(drivetrain.deadbandAndSquare(inputY.getAsDouble(), TRANSLATION_DEADBAND));
+        double rot = slewRot.calculate(drivetrain.deadbandAndSquare(inputRot.getAsDouble(), ROTATION_DEADBAND));
+
+        drivetrain.drive(x, y, rot);
     }
 
     // Called once the command ends or is interrupted.
