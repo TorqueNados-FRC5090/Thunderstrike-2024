@@ -69,9 +69,6 @@ public class SwerveModule extends SubsystemBase {
         driveMotor = new CANSparkFlex(driveMotorID, MotorType.kBrushless);
         driveMotor.restoreFactoryDefaults();
         driveMotor.setSmartCurrentLimit(40);
-        driveMotor.getPIDController().setFF(0.0);
-        driveMotor.getPIDController().setP(0.2);
-        driveMotor.getPIDController().setI(0.0);
         driveMotor.setInverted(driveMotorInverted);
         driveMotor.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus0, 100);
         driveMotor.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus1, 20);
@@ -86,14 +83,14 @@ public class SwerveModule extends SubsystemBase {
 
         // Initialize the driving motor's PID controller
         driveController = driveMotor.getPIDController();
+        driveController.setFF(0.0);
+        driveController.setP(0.2);
+        driveController.setI(0.0);
 
         // Construct and configure the turning motor
         turnMotor = new CANSparkMax(turnMotorID, MotorType.kBrushless);
         turnMotor.restoreFactoryDefaults();
         turnMotor.setSmartCurrentLimit(20);
-        turnMotor.getPIDController().setFF(0.0);
-        turnMotor.getPIDController().setP(0.2);
-        turnMotor.getPIDController().setI(0.0);
         turnMotor.setInverted(turningMotorInverted);
         turnMotor.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus0, 100);
         turnMotor.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus1, 20);

@@ -3,41 +3,41 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.35,
-        "y": 5.55
+        "x": 2.35,
+        "y": 6.85
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.721675314779201,
-        "y": 7.147880910047535
+        "x": 2.5817057948401616,
+        "y": 6.90460466635219
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.867484306397183,
-        "y": 7.4677963641641565
+        "x": 7.903770093254472,
+        "y": 7.359047860952865
       },
       "prevControl": {
-        "x": 7.737959090077703,
-        "y": 7.50272451238514
+        "x": 7.913889803316173,
+        "y": 7.818443775792306
       },
       "nextControl": {
-        "x": 8.464929787002431,
-        "y": 7.306687470517797
+        "x": 7.894335788671578,
+        "y": 6.930766718676294
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.57,
-        "y": 5.790485866686019
+        "x": 2.35,
+        "y": 6.85
       },
       "prevControl": {
-        "x": 5.457563772270401,
-        "y": 5.803004463151783
+        "x": 2.5698918683551657,
+        "y": 6.8939783736710325
       },
       "nextControl": null,
       "isLocked": false,
@@ -46,12 +46,7 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 2,
-      "rotationDegrees": 0,
-      "rotateFast": false
-    },
-    {
-      "waypointRelativePos": 1,
+      "waypointRelativePos": 0.8,
       "rotationDegrees": 0,
       "rotateFast": false
     }
@@ -59,8 +54,8 @@
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "Intake Piece 1",
-      "waypointRelativePos": 0.4,
+      "name": "Intake",
+      "waypointRelativePos": 0.5,
       "command": {
         "type": "sequential",
         "data": {
@@ -74,16 +69,6 @@
           ]
         }
       }
-    },
-    {
-      "name": "Shoot Piece 1",
-      "waypointRelativePos": 1.55,
-      "command": {
-        "type": "sequential",
-        "data": {
-          "commands": []
-        }
-      }
     }
   ],
   "globalConstraints": {
@@ -94,13 +79,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0,
+    "rotation": 30.0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "Center Paths",
+  "folder": "Amp Paths",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": 16.0,
     "velocity": 0
   },
   "useDefaultConstraints": true

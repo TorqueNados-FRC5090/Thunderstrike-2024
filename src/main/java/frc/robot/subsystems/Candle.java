@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 import com.ctre.phoenix.led.CANdle;
+import com.ctre.phoenix.led.CANdleStatusFrame;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.LEDConstants.LEDColor;
 import frc.robot.Constants.LEDConstants.LEDStrip;
@@ -13,6 +15,7 @@ public class Candle extends SubsystemBase {
      */
     public Candle(int ID){
         candle = new CANdle(ID);
+        candle.setStatusFramePeriod(CANdleStatusFrame.CANdleStatusFrame_Status_1_General, 500);
     }
     
     /** Sets the LEDs to the selected color

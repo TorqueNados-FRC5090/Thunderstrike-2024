@@ -14,61 +14,55 @@
         {
           "type": "named",
           "data": {
-            "name": "Shoot Preload"
+            "name": "RevShooter"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Amp to Near"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
+            "pathName": "Amp Start to Shoot Preload"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Take Longshot"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Amp to Left Far"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
+            "pathName": "Amp Left Near Shoot Far"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Take Longshot"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Amp to Right Far"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
+            "pathName": "Amp Far Left Shoot Long"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Take Longshot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Amp Far Right Shoot Long"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Take Longshot"
           }
         }
       ]

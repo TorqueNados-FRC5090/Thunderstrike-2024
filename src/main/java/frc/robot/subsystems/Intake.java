@@ -37,6 +37,8 @@ public class Intake extends SubsystemBase{
         rotationMotor.restoreFactoryDefaults();
         rotationMotor.setIdleMode(IdleMode.kBrake);
         rotationMotor.setInverted(false);
+        rotationMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus0, 500);
+        rotationMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
         rotationPID = new GenericPID(rotationMotor, ControlType.kPosition, 0.075);
         rotationPID.setRatio(INTAKE_PIVOT_RATIO);
 

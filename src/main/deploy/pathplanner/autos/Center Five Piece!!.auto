@@ -12,6 +12,12 @@
     "data": {
       "commands": [
         {
+          "type": "named",
+          "data": {
+            "name": "Shoot Preload"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "Center to Center Near"
@@ -50,7 +56,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Center to Left Near with Rotation"
+            "pathName": "Center to Center Far"
           }
         },
         {
@@ -68,7 +74,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Center to Left Far"
+            "pathName": "Center to Left Near with Rotation"
           }
         },
         {

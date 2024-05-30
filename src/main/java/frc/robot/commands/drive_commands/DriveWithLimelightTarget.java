@@ -32,7 +32,7 @@ public class DriveWithLimelightTarget extends Command {
         this.inputX = translationInputX;
         this.inputY = translationInputY;
         this.inputRot = backupRotationInput;
-        this.headingController = new PIDController(.02, 0, .0025);
+        this.headingController = new PIDController(.009, 0, .00315);
         
         addRequirements(drivetrain);
     }

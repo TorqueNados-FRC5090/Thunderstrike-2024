@@ -2,7 +2,7 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.7048514097028195,
+      "x": 0.7,
       "y": 4.4
     },
     "rotation": -60.0
@@ -12,28 +12,21 @@
     "data": {
       "commands": [
         {
-          "type": "deadline",
+          "type": "named",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Stage to Near"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "RevShooter"
-                }
-              }
-            ]
+            "name": "RevShooter"
           }
         },
         {
-          "type": "wait",
+          "type": "path",
           "data": {
-            "waitTime": 0.2
+            "pathName": "Stage Start to Shoot Preload"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Aim Longshot"
           }
         },
         {
@@ -45,13 +38,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Stage to Right Far"
+            "pathName": "Stage Right Near Far Shot"
           }
         },
         {
-          "type": "wait",
+          "type": "named",
           "data": {
-            "waitTime": 0.2
+            "name": "Aim Longshot"
           }
         },
         {
@@ -63,19 +56,25 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Stage to Left Far"
+            "pathName": "Stage Far Right Shoot Long"
           }
         },
         {
-          "type": "wait",
+          "type": "named",
           "data": {
-            "waitTime": 0.2
+            "name": "Aim Longshot"
           }
         },
         {
           "type": "named",
           "data": {
             "name": "Shoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Stage to Center Far After Longshots"
           }
         }
       ]

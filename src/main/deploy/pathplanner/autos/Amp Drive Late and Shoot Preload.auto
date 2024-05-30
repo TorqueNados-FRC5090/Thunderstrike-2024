@@ -14,25 +14,25 @@
         {
           "type": "named",
           "data": {
-            "name": "Shoot Preload"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Amp to Near"
+            "name": "RevShooter"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
+            "waitTime": 9.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Amp Left Near Shoot Far"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Take Longshot"
           }
         }
       ]

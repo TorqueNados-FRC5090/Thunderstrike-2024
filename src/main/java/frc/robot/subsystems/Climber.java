@@ -24,6 +24,7 @@ public class Climber extends SubsystemBase {
     public Climber(int rightMotorID, int leftMotorID) {
         leaderMotor = new CANSparkMax(leftMotorID, MotorType.kBrushless);
         leaderMotor.restoreFactoryDefaults();
+        leaderMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus1, leftMotorID);
 
         followerMotor = new CANSparkMax(rightMotorID, MotorType.kBrushless);
         followerMotor.restoreFactoryDefaults();

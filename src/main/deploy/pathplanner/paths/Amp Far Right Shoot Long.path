@@ -3,41 +3,41 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.35,
-        "y": 5.554628252113648
+        "x": 2.35,
+        "y": 6.85
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.564316557204543,
-        "y": 6.0178163213469285
+        "x": 7.572118001378859,
+        "y": 7.5819151638303275
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.609343607312807,
-        "y": 6.623851731115785
+        "x": 7.85,
+        "y": 5.98
       },
       "prevControl": {
-        "x": 2.6743638032231813,
-        "y": 6.90831508822367
+        "x": 8.044673246489353,
+        "y": 6.120970281940564
       },
       "nextControl": {
-        "x": 2.531530371117614,
-        "y": 6.283418822761817
+        "x": 7.633472106732941,
+        "y": 5.823203939358338
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.3492869842882542,
-        "y": 5.554628252113648
+        "x": 2.35,
+        "y": 6.85
       },
       "prevControl": {
-        "x": 2.1749700642258425,
-        "y": 5.863420298269168
+        "x": 4.974237091331325,
+        "y": 6.78979643673573
       },
       "nextControl": null,
       "isLocked": false,
@@ -46,26 +46,16 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.1,
-      "rotationDegrees": 0.0,
-      "rotateFast": false
-    },
-    {
-      "waypointRelativePos": 1.0,
-      "rotationDegrees": 47.4895529219992,
-      "rotateFast": true
-    },
-    {
-      "waypointRelativePos": 1.9,
-      "rotationDegrees": 0,
+      "waypointRelativePos": 0.85,
+      "rotationDegrees": -36.9401225547785,
       "rotateFast": false
     }
   ],
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "Pickup",
-      "waypointRelativePos": 0.05,
+      "name": "Intake",
+      "waypointRelativePos": 0.25,
       "command": {
         "type": "parallel",
         "data": {
@@ -89,13 +79,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0,
+    "rotation": 30.0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "Center Paths",
+  "folder": "Amp Paths",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": 30.0,
     "velocity": 0
   },
   "useDefaultConstraints": true

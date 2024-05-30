@@ -12,15 +12,21 @@
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "Center to Center Near"
+            "name": "Shoot Preload"
           }
         },
         {
-          "type": "wait",
+          "type": "path",
           "data": {
-            "waitTime": 0.2
+            "pathName": "Center Start to Right Near Shoot Far"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Take Longshot"
           }
         },
         {
@@ -32,13 +38,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Center to Right Near with Rotation"
+            "pathName": "Center Near Shoot Far"
           }
         },
         {
-          "type": "wait",
+          "type": "named",
           "data": {
-            "waitTime": 0.2
+            "name": "Aim Longshot"
           }
         },
         {
@@ -50,13 +56,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Center to Left Near with Rotation"
+            "pathName": "Center Left Near Shoot Far"
           }
         },
         {
-          "type": "wait",
+          "type": "named",
           "data": {
-            "waitTime": 0.2
+            "name": "Aim Longshot"
           }
         },
         {
@@ -68,7 +74,25 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Center to Claim Left Fars"
+            "pathName": "Center Far Right Shoot Far"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Aim Longshot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Shoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Center to Center Far After Longshots"
           }
         }
       ]

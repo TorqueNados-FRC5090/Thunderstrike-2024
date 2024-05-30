@@ -7,6 +7,7 @@ import static frc.robot.Constants.IntakeIDs.*;
 import static frc.robot.Constants.ShooterIDs.*;
 import static frc.robot.Constants.ClimberIDs.*;
 import static frc.robot.Constants.AmpDeflectorIDs.*;
+
 import frc.robot.Constants.ClimberConstants.ClimberPosition;
 import frc.robot.Constants.IntakeConstants.IntakePosition;
 import frc.robot.Constants.ShooterConstants.ShooterPosition;
@@ -55,7 +56,7 @@ public class RobotContainer {
     /** Use this to pass the autonomous command to the main {@link Robot} class.
      *  @return the command to run in autonomous */
     public Command getAutonomousCommand() {
-        return auton.shootPreload().andThen(autonChooser.getSelected());
+        return autonChooser.getSelected();
     }
 
     public boolean onRedAlliance() { 
@@ -87,36 +88,36 @@ public class RobotContainer {
             .alongWith(new DriveWithLimelightTarget(drivetrain, intakeLimelight,
                 () -> driverController.getLeftX(), () -> driverController.getLeftY(), () -> driverController.getRightX()).repeatedly())
                 .until(() -> intake.holdingPiece())
-            .alongWith(deflector.deflectorOutFor(.15))
             .onlyIf(() -> shooter.getPosition() >= ShooterPosition.POINT_BLANK.getAngle()-1));
         
         // HOLD RT -> Drive in robot centric mode
         driverController.rightTrigger().onTrue(new InstantCommand(() -> drivetrain.setFieldCentric(false)))
-        .onFalse(new InstantCommand(() -> drivetrain.setFieldCentric(true)));
+            .onFalse(new InstantCommand(() -> drivetrain.setFieldCentric(true)));
         // HOLD X -> Lock the drivetrain for anti-defense
         driverController.x().whileTrue(new LockDrivetrain(drivetrain));
         // HOLD A -> Lock robot heading straight
         driverController.a().whileTrue(new DriveWithHeading(drivetrain,
             () -> driverController.getLeftX(), () -> driverController.getLeftY(), 0));
-
-        driverController.rightBumper().whileTrue(new DriveWithLimelightTarget(drivetrain, shooterLimelight,
-        () -> driverController.getLeftX(), () -> driverController.getLeftY(), () -> driverController.getRightX()).repeatedly());
     }
 
     /** Configures a set of control bindings for the robot's operator */
     private void setOperatorControls() {
-        // Hold LT -> Prep the shooter for a point blank shot
+        // Hold LT -> Prep the shooter for a point-blank shot
         operatorController.leftTrigger()
-            .onTrue(new SetShooterState(shooter, ShooterPosition.POINT_BLANK, 3000))
+            .onTrue(new SetShooterState(shooter, ShooterPosition.POINT_BLANK, 4000))
             .onFalse(new SetShooterState(shooter, ShooterPosition.POINT_BLANK, 0));
+
+        // Hold RB -> Prep the shooter for a shot using limelight
+        operatorController.rightBumper()
+            .whileTrue(new AimShooterAtSpeaker(shooterLimelight, shooter).repeatedly()
+                .alongWith(new DriveWithLimelightTarget(drivetrain, shooterLimelight,
+                    () -> driverController.getLeftX(), () -> driverController.getLeftY(), () -> driverController.getRightX()).repeatedly()))
+            .onFalse(new SetShooterState(shooter, ShooterPosition.POINT_BLANK, 0));
+
         // Hold LB -> Prep shooter for amp shot
         operatorController.leftBumper()
             .onTrue(new SetShooterState(shooter, ShooterPosition.AMP_SHOT, 1350))
             .whileTrue(deflector.deflectorOut())
-            .onFalse(new SetShooterState(shooter, ShooterPosition.POINT_BLANK, 0));
-        // Hold RB -> Long Shot
-        operatorController.rightBumper()
-            .onTrue(new SetShooterState(shooter, ShooterPosition.LONG_SHOT, 4000))
             .onFalse(new SetShooterState(shooter, ShooterPosition.POINT_BLANK, 0));
 
         // HOLD RT -> Drive the intake outward for piece ejection

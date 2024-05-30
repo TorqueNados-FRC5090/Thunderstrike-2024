@@ -10,6 +10,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkLowLevel.PeriodicFrame;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants.ShooterPosition;
 import frc.robot.wrappers.GenericPID;
@@ -33,11 +34,13 @@ public class Shooter extends SubsystemBase{
     public Shooter(int shooterRightID, int shooterLeftID, int pivotRightID, int pivotLeftID) {
         shooterLeader = new CANSparkFlex(shooterRightID, MotorType.kBrushless);
         shooterLeader.restoreFactoryDefaults();
-
+        shooterLeader.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 500);
         shooterFollower = new CANSparkFlex(shooterLeftID, MotorType.kBrushless);
         shooterFollower.restoreFactoryDefaults();
         shooterFollower.follow(shooterLeader, true);
-
+        shooterFollower.setPeriodicFramePeriod(PeriodicFrame.kStatus0, 100);
+        shooterFollower.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
+        shooterFollower.setPeriodicFramePeriod(PeriodicFrame.kStatus2, 500);
 
         shooterPID = new GenericPID(shooterLeader, ControlType.kVelocity, .00022, .0000005, 0);
         shooterPID.setInputRange(0, 6000);
@@ -45,6 +48,7 @@ public class Shooter extends SubsystemBase{
 
         pivotLeader = new CANSparkMax(pivotLeftID, MotorType.kBrushless);
         pivotLeader.restoreFactoryDefaults();
+        pivotLeader.setPeriodicFramePeriod(PeriodicFrame.kStatus1, 500);
 
         pivotFollower = new CANSparkMax(pivotRightID, MotorType.kBrushless);
         pivotFollower.restoreFactoryDefaults();
@@ -82,6 +86,13 @@ public class Shooter extends SubsystemBase{
         else
             shooterPID.activate(RPM);
     }
+
+    public Command increase() {
+        return this.runOnce(() -> pivotPID.activate(pivotPID.getSetpoint()+1));
+    }
+    public Command decrease() {
+        return this.runOnce(() -> pivotPID.activate(pivotPID.getSetpoint()-1));
+    }
     
     /** Stops the shooter */
     public void stopShooter() {
@@ -93,6 +104,12 @@ public class Shooter extends SubsystemBase{
      *  @param pos The desired position of the shooter */
     public void goToPosition(ShooterPosition pos) {
         pivotPID.activate(pos.getAngle()); 
+    }
+
+    /** Activates the shooter PID
+     *  @param angle The desired position of the shooter in degrees */
+    public void goToAngle(double angle ) {
+        pivotPID.activate(angle); 
     }
 
     /** Stops the shooter */

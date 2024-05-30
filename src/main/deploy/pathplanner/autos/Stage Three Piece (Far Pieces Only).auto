@@ -12,6 +12,12 @@
     "data": {
       "commands": [
         {
+          "type": "named",
+          "data": {
+            "name": "Shoot Preload"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "Stage to Right Far"
@@ -36,7 +42,7 @@
           }
         },
         {
-          "type": "wait",
+          "type": "wait", 
           "data": {
             "waitTime": 0.2
           }
